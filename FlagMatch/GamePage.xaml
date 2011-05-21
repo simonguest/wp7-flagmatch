@@ -1,0 +1,53 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="FlagMatch.GamePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Commands="clr-namespace:FlagMatch.Commands"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot contains the root grid where all other page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent" Loaded="LayoutRoot_Loaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="24,24,0,12">
+            <TextBlock x:Name="ApplicationTitle" Text="FLAG MATCH" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding QuestionTitle, Mode=OneWay}" Margin="-3,-8,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentGrid" Grid.Row="1">
+            <Image Height="223" HorizontalAlignment="Left" Margin="68,35,0,0" Name="flagImage" Stretch="Fill" VerticalAlignment="Top" Width="337" Source="{Binding QuestionImage, Mode=OneWay}"/>
+            <Rectangle Height="223" HorizontalAlignment="Left" Margin="68,35,0,0" Name="flagBorder" StrokeThickness="2" VerticalAlignment="Top" Width="337" Stroke="White"/>
+            <Button Content="{Binding Option1Text, Mode=OneWay}" Height="72" HorizontalAlignment="Left" Margin="68,280,0,0" Name="option1Button" VerticalAlignment="Top" Width="337" Commands:CommandService.Command="{Binding Path=Answer1Button}"/>
+            <Button Content="{Binding Option2Text, Mode=OneWay}" Height="72" HorizontalAlignment="Left" Margin="68,339,0,0" Name="option2Button" VerticalAlignment="Top" Width="337" Commands:CommandService.Command="{Binding Path=Answer2Button}"/>
+            <Button Content="{Binding Option3Text, Mode=OneWay}" Height="72" HorizontalAlignment="Left" Margin="68,402,0,0" Name="option3Button" VerticalAlignment="Top" Width="337" Commands:CommandService.Command="{Binding Path=Answer3Button}"/>
+            <Button Content="{Binding Option4Text, Mode=OneWay}" Height="72" HorizontalAlignment="Left" Margin="68,465,0,0" Name="option4Button" VerticalAlignment="Top" Width="337" Commands:CommandService.Command="{Binding Path=Answer4Button}"/>
+            <Button Content="Continue" Height="72" HorizontalAlignment="Left" Margin="120,545,0,0" Name="continueButton" VerticalAlignment="Top" Width="244"  Visibility="{Binding ContinueButtonVisibility}" Commands:CommandService.Command="{Binding Path=ContinueButton}" />
+            <Rectangle Name="option1Highlight" Visibility="{Binding Highlight1Visibility, Mode=OneWay}" Height="72" Width="337" HorizontalAlignment="Left" Margin="68,280,0,0" Stroke="{x:Null}" StrokeThickness="1" VerticalAlignment="Top" Fill="#7F00FF00" ></Rectangle>
+            <Rectangle Name="option2Highlight" Visibility="{Binding Highlight2Visibility, Mode=OneWay}" Height="72" Width="337" HorizontalAlignment="Left" Margin="68,339,0,0" Stroke="{x:Null}" StrokeThickness="1" VerticalAlignment="Top" Fill="#7F00FF00" ></Rectangle>
+            <Rectangle Name="option3Highlight" Visibility="{Binding Highlight3Visibility, Mode=OneWay}" Height="72" Width="337" HorizontalAlignment="Left" Margin="68,402,0,0" Stroke="{x:Null}" StrokeThickness="1" VerticalAlignment="Top" Fill="#7F00FF00" ></Rectangle>
+            <Rectangle Name="option4Highlight" Visibility="{Binding Highlight4Visibility, Mode=OneWay}" Height="72" Width="337" HorizontalAlignment="Left" Margin="68,465,0,0" Stroke="{x:Null}" StrokeThickness="1" VerticalAlignment="Top" Fill="#7F00FF00" ></Rectangle>
+            <Grid Height="617" HorizontalAlignment="Center" Name="highScoreGrid" VerticalAlignment="Top" Opacity="0.8" Visibility="{Binding HighScoreGridVisibility, Mode=OneWay}">
+                <TextBlock Height="49" HorizontalAlignment="Center" Margin="0,58,0,0" Name="highScoreTextBlock" Text="{Binding HighScoreText, Mode=OneWay}" VerticalAlignment="Top" Width="474" FontSize="25" TextAlignment="Center" FontFamily="Segoe WP Semibold" />
+                <TextBlock FontSize="25" Height="49" HorizontalAlignment="Center" Margin="0,117,0,0" Name="highScoreAnnounceTextBlock" Text="{Binding HighScoreAnnounceText, Mode=OneWay}" TextAlignment="Center" VerticalAlignment="Top" Width="474" FontFamily="Segoe WP Semibold" />
+                <TextBox Height="72" HorizontalAlignment="Left" Margin="44,172,0,0" Name="highScoreNameTextBox" Text="{Binding HighScoreNameText, Mode=TwoWay}" VerticalAlignment="Top" Width="376" TextAlignment="Center" Visibility="{Binding HighScoreNameVisibility, Mode=OneWay}" FontFamily="Segoe WP Semibold" AcceptsReturn="False" />
+                <Button Content="Continue" Height="72" HorizontalAlignment="Left" Margin="117,545,0,0" Name="highScoreContinueButton" VerticalAlignment="Top" Width="244" Commands:CommandService.Command="{Binding Path=HighScoreContinueButton}"/>
+                <TextBlock Height="26" HorizontalAlignment="Left" Margin="52,155,0,0" Name="highScoreNameLabel" Text="Enter your name:" VerticalAlignment="Top" Width="276" Visibility="{Binding HighScoreNameLabelVisibility}"/>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>
