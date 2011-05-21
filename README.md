@@ -1,0 +1,1 @@
+Flagmatch is a simple flag matching game to demonstrate the use of the MVVM (ModelView View Model) pattern on WP7.  Follow the link to my blog post on the topic for more information: http://simonguest.com/2010/10/18/test-driven-development-tdd-and-windows-phone-7/
